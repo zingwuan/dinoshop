@@ -4,7 +4,10 @@
 <section class="py-5 text-center container" style="height: 250px;">
         <div class="row py-lg-5">
           <div class="col-lg-6 col-md-8 mx-auto">
-            <h2 class="" style="font-size: 40px;"> Danh mục sản phẩm</h1>
+          @foreach($category_name as $key => $name)
+
+            <h2 class="" style="font-size: 40px;">{{$name->category_name}}</h1>
+          @endforeach
               <p>
                 <a href="#" class="btn btn-primary my-2">Tất cả sản phẩm</a>
                 <a href="#" class="btn btn-secondary my-2">Hàng Sale 20%</a>

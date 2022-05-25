@@ -55,7 +55,13 @@ Route::get('/active-product/{product_id}',[ProductController::class,'active_prod
 
 Route::post('/save-product',[ProductController::class,'save_product'] );
 
+//Login Facebook
+Route::get('/login-facebook',[AdminController::class,'login_facebook']);
+Route::get('/admin/callback',[AdminController::class,'callback_facebook']);
 
+//Login Google
+Route::get('/login-google',[AdminController::class,'login_google']);
+Route::get('/admin/callback',[AdminController::class,'callback_google']);
 
 
 
