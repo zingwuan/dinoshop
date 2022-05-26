@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('../frontend/css/index.css')}}">
+    <link rel="stylesheet" href="{{ asset('../frontend/css/product.css')}}">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     <title>Shop DiNo</title>
     <link href="{{ asset('../assets/dist/css/bootstrap.min.css')}}" rel="stylesheet">
 
@@ -159,6 +162,7 @@
     </div>
 
     @yield('content')
+    
 
       <!--Quangcao-->
       <div class="container px-4 py-5" id="custom-cards">
@@ -258,4 +262,7 @@
 
 </body>
 <script src="{{ asset('../assets/dist/js/bootstrap.bundle.min.js')}}"></script>
+<script src="https://kit.fontawesome.com/54f0cb7e4a.js" crossorigin="anonymous"></script>
+
+
 </html>

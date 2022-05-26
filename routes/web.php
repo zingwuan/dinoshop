@@ -22,6 +22,8 @@ Route::get('/trangchu',[HomeController::class,'index'] );
 
 //Danh muc san pham
 Route::get('/danh-muc-san-pham/{category_id}',[CategoryProduct::class,'show_category_home'] );
+Route::get('/chi-tiet-san-pham/{product_id}',[ProductController::class,'details_product'] );
+
 
 //Backend
 Route::get('/admin',[AdminController::class,'index'] );
@@ -61,8 +63,10 @@ Route::get('/admin/callback',[AdminController::class,'callback_facebook']);
 
 //Login Google
 Route::get('/login-google',[AdminController::class,'login_google']);
-Route::get('/admin/callback',[AdminController::class,'callback_google']);
+Route::get('/admin/google/callback',[AdminController::class,'callback_google']);
 
+//Send Mail
+Route::get('/send-mail',[HomeController::class,'send_mail']);
 
 
 

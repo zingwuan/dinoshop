@@ -29,10 +29,10 @@
     </div>
     <div class="table-responsive">
     <?php
-	$message = Session::get('message');
+	$message = session()->get('message');
 	if($message){
 		echo $message;
-		Session::put('message',null);
+		session()->get('message',null);
 	}
 	?>
       <table class="table table-striped b-t b-light">

@@ -8,10 +8,10 @@
                             Cập nhật sản phẩm
                         </header>
                         <?php
-	                       $message = Session::get('message');
+	                       $message = session()->get('message');
 	                       if($message){
 		                   echo $message;
-		                   Session::put('message',null);
+		                   session()->get('message',null);
 	                       }
 	                    ?>
                         <div class="panel-body">

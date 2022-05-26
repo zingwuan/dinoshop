@@ -18,9 +18,12 @@
          
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
            @foreach($all_product as $key => $product)
+           
             <div class="col">
               <div class="card shadow-sm">
-               <a href=""> <img src="{{URL::to('uploads/product/'.$product->product_image)}}" width="100%" height="490px"  ></a>
+               <a href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}"> 
+                   <img src="{{URL::to('uploads/product/'.$product->product_image)}}" width="100%" height="490px"  >
+                </a>
                 <div class="icon-display-combo" >
                  <img src="{{ asset('../frontend/images/iconsale.png')}}" width="45px" alt="">
                 </div>
@@ -57,6 +60,7 @@
                 </div>
               </div>
             </div>
+            
             @endforeach
             
             

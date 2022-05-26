@@ -41,7 +41,7 @@ return [
     'google' => [
         'client_id' => '632349918444-m7e0olni0pptlnoiukajdmdsm073d7k6.apps.googleusercontent.com',
         'client_secret'=>'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',
-        'redirect' => 'http://127.0.0.1:8000/google/callback'
+        'redirect' => 'http://127.0.0.1:8000/admin/google/callback'
 
     ],
 

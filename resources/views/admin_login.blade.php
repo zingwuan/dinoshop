@@ -20,16 +20,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="{{ asset('../backend/css/font-awesome.css')}}" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <script src="{{ asset('../backend/js/jquery2.0.3.min.js')}}"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>  
 </head>
 <body>
 <div class="log-w3">
 <div class="w3layouts-main">
 	<h2>Đăng Nhập</h2>
 	<?php
-	$message = Session::get('message');
+	$message = session()->get('message');
 	if($message){
 		echo $message;
-		Session::put('message',null);
+		session()->get('message',null);
 	}
 	?>
 		<form action="{{URL::to('/admin-dashboard')}}" method="post">
@@ -40,6 +41,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<h6><a href="#">Quên mật khẩu</a></h6>
 				<div class="clearfix"></div>
 				<input type="submit" value="Đăng nhập" name="login">
+
+				<div class="g-recaptcha" data-sitekey="{{env('CAPTCHA_KEY')}}"></div>
+<br/>
+@if($errors->has('g-recaptcha-response'))
+<span class="invalid-feedback" style="display:block">
+	<strong>{{$errors->first('g-recaptcha-response')}}</strong>
+</span>
+@endif
+
 		</form>
 		<a href="{{url('/login-facebook')}}">Đăng nhập Facebook</a>
 		<a style="float:right ;" href="{{url('/login-google')}}">Đăng nhập Google</a>

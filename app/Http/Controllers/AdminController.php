@@ -9,6 +9,7 @@ use Illuminate\Contracts\Session\Session;
 use App\Models\Login;
 use App\Models\Social;
 use Illuminate\Support\Facades\Redirect;
+use App\Rules\Captcha;
 use Socialite;
 
 class AdminController extends Controller
@@ -38,7 +39,7 @@ class AdminController extends Controller
         return redirect('/dashboard')->with('message','Đăng nhập Admin thành công');
     }else{
 
-        $Socials = new Social([
+        $customer_new = new Social([
             'provider_user_id' => $provider->getId(),
             'provider' => 'facebook'
         ]);
@@ -52,8 +53,8 @@ class AdminController extends Controller
                 'admin_phone'=>''
             ]);
         }
-        $Socials->login()->associate($orang);
-        $Socials->save();
+        $customer_new->login()->associate($orang);
+        $customer_new->save();
 
         $account_name = Login::where('admin_id',$account->user)->first();
         session()->put('admin_name',$account_name->admin_name);
@@ -64,52 +65,55 @@ class AdminController extends Controller
       
     public function login_google(){
         return Socialite::driver('google')->redirect();
-   }
+    }
     public function callback_google(){
         $users = Socialite::driver('google')->stateless()->user(); 
-        return $users->id;
         $authUser = $this->findOrCreateUser($users,'google');
-        $account_name = Login::where('admin_id',$authUser->user)->first();
-        session()->put('admin_login',$account_name->admin_name);
-        session()->put('admin_id',$account_name->admin_id);
+        if($authUser)
+        {
+            $account_name = Login::where('admin_id',$authUser->user)->first();
+            session()->put('admin_name',$account_name->admin_name);
+            session()->put('admin_id',$account_name->admin_id);
+        }elseif($customer_new){
+
+            $account_name = Login::where('admin_id',$authUser->user)->first();
+            session()->put('admin_name',$account_name->admin_name);
+            session()->put('admin_id',$account_name->admin_id);
+        }
+        
         return redirect('/dashboard')->with('message', 'Đăng nhập Admin thành công');
       
-       
-    }
+     }
     public function findOrCreateUser($users,$provider){
         $authUser = Social::where('provider_user_id', $users->id)->first();
         if($authUser){
-
             return $authUser;
+        }else{
+            $customer_new = new Social([
+                'provider_user_id' => $users->id,
+                'provider' => strtoupper($provider)
+            ]);
+    
+            $orang = Login::where('admin_email',$users->email)->first();
+    
+                if(!$orang){
+                    $orang = Login::create([
+                        'admin_name' => $users->name,
+                        'admin_email' => $users->email,
+                        'admin_password' => '',
+                        'admin_phone' => '',
+                        'admin_status' => 1
+                    ]);
+                }
+                $customer_new->login()->associate($orang);
+                $customer_new->save();
+                return $customer_new;
+    
+            }
         }
       
-        $hieu = new Social([
-            'provider_user_id' => $users->id,
-            'provider' => strtoupper($provider)
-        ]);
+        
 
-        $orang = Login::where('admin_email',$users->email)->first();
-
-            if(!$orang){
-                $orang = Login::create([
-                    'admin_name' => $users->name,
-                    'admin_email' => $users->email,
-                    'admin_password' => '',
-
-                    'admin_phone' => '',
-                    'admin_status' => 1
-                ]);
-            }
-        $hieu->login()->associate($orang);
-        $hieu->save();
-
-        $account_name = Login::where('admin_id',$authUser->user)->first();
-        session()->put('admin_login',$account_name->admin_name);
-        session()->put('admin_id',$account_name->admin_id);
-        return redirect('/dashboard')->with('message', 'Đăng nhập Admin thành công');
-
-
-    }
 
     
     public function index()

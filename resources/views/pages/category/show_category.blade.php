@@ -23,7 +23,9 @@
            @foreach($category_by_id as $key => $product)
             <div class="col">
               <div class="card shadow-sm">
-               <a href=""> <img src="{{URL::to('uploads/product/'.$product->product_image)}}" width="100%" height="490px"  ></a>
+               <a href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}">
+                  <img src="{{URL::to('uploads/product/'.$product->product_image)}}" width="100%" height="490px"  >
+                </a>
                 <div class="icon-display-combo" >
                  <img src="{{ asset('../frontend/images/iconsale.png')}}" width="45px" alt="">
                 </div>

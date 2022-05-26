@@ -9,10 +9,10 @@
                         </header>
                         <div class="panel-body">
                         <?php
-	                       $message = Session::get('message');
+	                       $message = session()->get('message');
 	                       if($message){
 		                   echo $message;
-		                   Session::put('message',null);
+		                   session()->get('message',null);
 	                       }
 	                    ?>
                             <div class="position-center">
