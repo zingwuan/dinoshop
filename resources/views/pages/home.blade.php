@@ -50,7 +50,7 @@
                   </ul>
                  </div>
                 <div class="card-body">
-                  <p class="card-text" style="font-weight: 500;">{{$product->product_name}}</p>
+                  <p class="card-text" style="font-size:15px">{{$product->product_name}}</p>
                   <div class="d-flex justify-content-between align-items-center" style="margin-top: -6px;">
                     <p>
                       <span class="price">{{number_format($product->product_price).' '.'VNĐ'}}</span>

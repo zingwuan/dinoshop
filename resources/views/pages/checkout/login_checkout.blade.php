@@ -88,25 +88,25 @@
          <div id="login">   
            <h1>Đăng nhập tài khoản</h1>
             
-           <form action="/" method="post">
-            
+           <form action="{{URL::to('/login-customer')}}" method="post">
+              {{csrf_field()}}
              <div class="field-wrap">
              <label>
                Tài khoản<span class="req">*</span>
              </label>
-             <input type="email" name="email_account"required autocomplete="off"/>
+             <input type="email" name="email_account" required autocomplete="off"/>
            </div>
             
            <div class="field-wrap">
              <label>
                Mật khẩu<span class="req">*</span>
              </label>
-             <input type="password"required autocomplete="off"/>
+             <input type="password" name="password_account" required autocomplete="off"/>
            </div>
             
            <p class="forgot"><a href="#">Lấy lại mật khẩu</a></p>
             
-           <button class="button button-block">Đăng nhập</button>
+           <button type="submit" class="button button-block">Đăng nhập</button>
             
            </form>
   

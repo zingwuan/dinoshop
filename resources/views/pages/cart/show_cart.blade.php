@@ -43,7 +43,7 @@
 										{{csrf_field()}}
 									<input class="cart_quantity_input" type="text" name="cart_quantity" value="{{$v_content->qty}}" autocomplete="off" size="2">
 									<input type="hidden" value="{{$v_content->rowId}}" name="rowId_cart" class="form-control">
-									<input type="submit" value="Cập nhật" name="update_qty" class="btn btn-default btn-sm">
+									<input style="border-radius:15px;margin-left:5px;margin-top:1px" type="submit" value="Cập nhật" name="update_qty" class="btn btn-primary btn-sm">
 									</form>
 								</div>
 							</td>
@@ -135,7 +135,21 @@
 							<li>Phí vận chuyển <span>Free</span></li>
 							<li>Thành tiền <span>{{Cart::subtotal(0).' '.'VNĐ'}}</span></li>
 						</ul>
-							<a class="btn btn-default check_out" href="{{URL::to('/login-checkout')}}">Thanh toán</a>
+						<?php
+                   $customer_id = session()->get('customer_id');
+                   if($customer_id != NULL){
+
+                    ?>
+                
+				<a class="btn btn-primary check_out" href="{{URL::to('/checkout')}}">Thanh toán</a>
+                <?php
+                   }else{
+                    ?>
+                <a class="btn btn-primary check_out" href="{{URL::to('/login-checkout')}}">Thanh toán</a>
+
+                   <?php
+                   }
+                   ?>
 					</div>
 				</div>
 			</div>

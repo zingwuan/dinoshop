@@ -37,6 +37,7 @@
       </style>
 </head>
 <body>
+  
     <!--NAVBAR-->
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <symbol id="bootstrap" viewBox="0 0 118 94">
@@ -94,13 +95,30 @@
                     Sản Phẩm
                   </a>
                 </li>
+                <?php
+                   $customer_id = session()->get('customer_id');
+                   if($customer_id != NULL){
+
+                    ?>
+                <li>
+                  <a href="{{URL::to('/logout-checkout')}}" class="nav-link text-white">
+                    <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>
+                    Đăng Xuất
+                  </a>
+                </li>
+                <?php
+                   }else{
+                    ?>
                 <li>
                   <a href="{{URL::to('/login-checkout')}}" class="nav-link text-white">
                     <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>
-                    Tài Khoản
+                    Đăng Nhập
                   </a>
-                  
                 </li>
+                   <?php
+                   }
+                   ?>
+                
               </ul>
             </div>
           </div>
@@ -173,7 +191,7 @@
     
 
       <!--Quangcao-->
-      <div class="container px-4 py-5" id="custom-cards">
+      <!-- <div class="container px-4 py-5" id="custom-cards">
         <h2 class="pb-2 border-bottom">Tin Tức Thời Trang</h2>
     
         <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
@@ -195,7 +213,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       
       <!--FOOTER-->
       <div class="container">
