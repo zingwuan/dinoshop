@@ -7,6 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('../frontend/css/index.css')}}">
     <link rel="stylesheet" href="{{ asset('../frontend/css/product.css')}}">
+    <link href="{{asset('../frontend/css/main.css')}}" rel="stylesheet">
+    <link href="{{asset('../frontend/css/sweetalert.css')}}" rel="stylesheet">
+    <link href="{{asset('../frontend/css/animate.css')}}" rel="stylesheet">
+    <link href="{{asset('../frontend/css/prettyPhoto.css')}}" rel="stylesheet">
+    <link href="{{asset('../frontend/css/price-range.css')}}" rel="stylesheet">
+    <link href="{{asset('../frontend/css/responsive.css')}}" rel="stylesheet">
+    <link href="{{asset('../frontend/css/font-awesome.min.css')}}" rel="stylesheet">
+
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <title>Shop DiNo</title>
@@ -63,7 +71,7 @@
     
               <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                 <li>
-                  <a href="{{URL::to('trangchu')}}" class="nav-link text-secondary">
+                  <a href="{{URL::to('home')}}" class="nav-link text-secondary">
                     <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#home"/></svg>
                     Trang Chủ
                   </a>
@@ -75,7 +83,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="nav-link text-white">
+                  <a href="{{URL::to('/show-cart')}}" class="nav-link text-white">
                     <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#table"/></svg>
                     Giỏ Hàng
                   </a>
@@ -87,7 +95,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="" class="nav-link text-white">
+                  <a href="{{URL::to('/login-checkout')}}" class="nav-link text-white">
                     <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>
                     Tài Khoản
                   </a>
@@ -151,7 +159,7 @@
         <div class="col-lg-4">
           <img src="{{ asset('../frontend/images/quanao.jpg')}}" class="rounded-circle" width="140" height="140" alt="giaydep" >
           
-          <h2> <a style="text-decoration:none;color:black" href="{{URL::to('/danh-muc-san-pham/'.$cate->category_id)}}">{{$cate->category_name}}</a></h2>
+          <h2> <a style="text-decoration:none;color:black" href="{{URL::to('/category-product/'.$cate->category_id)}}">{{$cate->category_name}}</a></h2>
           
           <p>{{$cate->category_desc}}</p>
           <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>

@@ -25,9 +25,11 @@ class AdminController extends Controller
            return Redirect::to('admin')->send();
         }
     }
+
     public function login_facebook(){
         return Socialite::driver('facebook')->redirect();
     }
+
     public function callback_facebook(){
         $provider = Socialite::driver('facebook')->stateless()->user();
         $account = Socialite::where('provider','facebook')->where('provider_user_id',$provider->getId())->first();
@@ -36,7 +38,7 @@ class AdminController extends Controller
         $account_name = Login::where('admin_id',$account->user)->first();
         session()->put('admin_name',$account_name->admin_name);
         session()->put('admin_id',$account_name->admin_id);
-        return redirect('/dashboard')->with('message','Đăng nhập Admin thành công');
+        return redirect('dashboard')->with('message','Đăng nhập Admin thành công');
     }else{
 
         $customer_new = new Social([
@@ -59,35 +61,31 @@ class AdminController extends Controller
         $account_name = Login::where('admin_id',$account->user)->first();
         session()->put('admin_name',$account_name->admin_name);
         session()->put('admin_id',$account_name->admin_id);
-        return redirect('/dashboard')->with('message','Đăng nhập Admin thành công');
+        return redirect('dashboard')->with('message','Đăng nhập Admin thành công');
     }
     }
       
     public function login_google(){
         return Socialite::driver('google')->redirect();
     }
+
     public function callback_google(){
         $users = Socialite::driver('google')->stateless()->user(); 
-        $authUser = $this->findOrCreateUser($users,'google');
-        if($authUser)
+        $auth_User = $this->findOrCreateUser($users,'google');
+        if($auth_User)
         {
-            $account_name = Login::where('admin_id',$authUser->user)->first();
-            session()->put('admin_name',$account_name->admin_name);
-            session()->put('admin_id',$account_name->admin_id);
-        }elseif($customer_new){
-
-            $account_name = Login::where('admin_id',$authUser->user)->first();
+            $account_name = Login::where('admin_id',$auth_User->user)->first();
             session()->put('admin_name',$account_name->admin_name);
             session()->put('admin_id',$account_name->admin_id);
         }
-        
-        return redirect('/dashboard')->with('message', 'Đăng nhập Admin thành công');
+        return redirect('dashboard')->with('message', 'Đăng nhập Admin thành công');
       
      }
+
     public function findOrCreateUser($users,$provider){
-        $authUser = Social::where('provider_user_id', $users->id)->first();
-        if($authUser){
-            return $authUser;
+        $auth_User = Social::where('provider_user_id', $users->id)->first();
+        if($auth_User){
+            return $auth_User;
         }else{
             $customer_new = new Social([
                 'provider_user_id' => $users->id,
@@ -112,19 +110,17 @@ class AdminController extends Controller
             }
         }
       
-        
-
-
-    
     public function index()
     {
         return view('admin_login');
     }
+
     public function show_dashboard()
     {
         $this->authLogin();
         return view('admin.dashboard');
     }
+
     public function dashboard(Request $request)
     {
        $data = $request->all();
@@ -136,20 +132,21 @@ class AdminController extends Controller
        {
         session()->put('admin_name',$login->admin_name);
         session()->put('admin_id',$login->admin_id);
-           return Redirect::to('/dashboard');
+           return Redirect::to('dashboard');
        }else{
         session()->put('message','Mật khẩu or tài khoản sai');
-           return Redirect::to('/admin');
+           return Redirect::to('admin');
 
        }
      
     }
+    
     public function logout(Request $request)
     {
         $this->authLogin();
         session()->put('admin_name',null);
         session()->put('admin_id',null);
-        return Redirect::to('/admin');
+        return Redirect::to('admin');
 
     }
 

@@ -21,7 +21,7 @@
            
             <div class="col">
               <div class="card shadow-sm">
-               <a href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}"> 
+               <a href="{{URL::to('/product-details/'.$product->product_id)}}"> 
                    <img src="{{URL::to('uploads/product/'.$product->product_image)}}" width="100%" height="490px"  >
                 </a>
                 <div class="icon-display-combo" >

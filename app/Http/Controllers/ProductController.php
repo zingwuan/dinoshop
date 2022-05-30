@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Controllers\CheckoutController;
 
 class ProductController extends Controller
 {
@@ -20,12 +21,14 @@ class ProductController extends Controller
            return Redirect::to('admin')->send();
         }
     }
+    
     public function add_product()
     {
         $this->authLogin();
        $cate_product = DB::table('tbl_category_product')->orderby('category_id','desc')->get();
         return view('admin.add_product')->with('cate_product',$cate_product);
     }
+
     public function all_product()
     {
         $this->authLogin();
@@ -33,6 +36,7 @@ class ProductController extends Controller
         $manager_product = view('admin.all_product')->with('all_product',$all_product);
         return view('admin_layout')->with('admin.all_product',$manager_product);
     }
+
     public function save_product(Request $request)
     {
         $this->authLogin();
@@ -61,6 +65,7 @@ class ProductController extends Controller
         session()->put('message','Thêm sản phẩm thành công');
         return Redirect::to('add-product');
     }
+
     public function unactive_product($product_id)
     {
         $this->authLogin();
@@ -68,6 +73,7 @@ class ProductController extends Controller
         session()->put('message','Không kích hoạt sản phẩm thành công');
         return Redirect::to('all-product');
     }
+
     public function active_product($product_id)
     {
         $this->authLogin();
@@ -75,6 +81,7 @@ class ProductController extends Controller
         session()->put('message','Kích hoạt sản phẩm thành công');
         return Redirect::to('all-product');
     }
+
     public function edit_product($product_id)
     {
         $this->authLogin();
@@ -83,6 +90,7 @@ class ProductController extends Controller
         $manager_product = view('admin.edit_product')->with('edit_product',$edit_product)->with('cate_product',$cate_product);
         return view('admin_layout')->with('admin.edit_product',$manager_product);
     }
+
     public function update_product(Request $request ,$product_id)
     {
         $this->authLogin();
@@ -109,6 +117,7 @@ class ProductController extends Controller
         return Redirect::to('all-product');
 
     }
+
     public function delete_product($product_id)
     {
         $this->authLogin();
@@ -123,8 +132,14 @@ class ProductController extends Controller
         $details_product = DB::table('tbl_product')
         ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
         ->where('tbl_product.product_id',$product_id)->get();
-
-        return view('pages.details.show_details')->with('category',$cate_product)->with('product_details',$details_product);
-
+         
+        foreach($details_product as $key => $value){
+           $category_id = $value->category_id;
+        }
+           $related_product = DB::table('tbl_product')
+        ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
+        ->where('tbl_category_product.category_id',$category_id)->get();
+        return view('pages.details.show_details')->with('category',$cate_product)->with('product_details',$details_product)->with('relate',$related_product);
+        
     }
 }

@@ -5,6 +5,8 @@ use App\Http\Controllers\CategoryProduct;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,11 +20,11 @@ use Illuminate\Support\Facades\Route;
 */
 //Frontend
 Route::get('/',[HomeController::class,'index'] );
-Route::get('/trangchu',[HomeController::class,'index'] );
+Route::get('/home',[HomeController::class,'index'] );
 
 //Danh muc san pham
-Route::get('/danh-muc-san-pham/{category_id}',[CategoryProduct::class,'show_category_home'] );
-Route::get('/chi-tiet-san-pham/{product_id}',[ProductController::class,'details_product'] );
+Route::get('/category-product/{category_id}',[CategoryProduct::class,'show_category_home'] );
+Route::get('/product-details/{product_id}',[ProductController::class,'details_product'] );
 
 
 //Backend
@@ -67,6 +69,20 @@ Route::get('/admin/google/callback',[AdminController::class,'callback_google']);
 
 //Send Mail
 Route::get('/send-mail',[HomeController::class,'send_mail']);
+
+//Cart
+Route::post('/save-cart',[CartController::class,'save_cart']);
+Route::get('/show-cart',[CartController::class,'show_cart']);
+Route::get('/delete-to-cart/{rowId}',[CartController::class,'delete_to_cart']);
+Route::post('/update-cart-quantity',[CartController::class,'update_cart_quantity']);
+
+//Checkout
+Route::get('/login-checkout',[CheckoutController::class,'login_checkout']);
+Route::post('/add-customer',[CheckoutController::class,'add_customer']);
+Route::get('/checkout',[CheckoutController::class,'checkout']);
+
+
+
 
 
 
