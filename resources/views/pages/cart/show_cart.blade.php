@@ -9,6 +9,15 @@
 				  <li class="active">Giỏ hàng của bạn </li>
 				</ol>
 			</div>
+			@if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session()->get('message') }}
+                    </div>
+                @elseif(session()->has('error'))
+                     <div class="alert alert-danger">
+                        {{ session()->get('error') }}
+                    </div>
+                @endif
 			<div class="table-responsive cart_info">
                 <?php
                 $content = Cart::content();
@@ -131,7 +140,7 @@
 				<div class="col-sm-6">
 					<div class="total_area">
 						<ul>
-							<li>Tổng <span>{{Cart::subtotal(0).' '.'VNĐ'}}</span></li>
+							<li>Tổng tiền  <span>{{Cart::subtotal(0).' '.'VNĐ'}}</span></li>
 							<li>Phí vận chuyển <span>Free</span></li>
 							<li>Thành tiền <span>{{Cart::subtotal(0).' '.'VNĐ'}}</span></li>
 						</ul>
@@ -150,6 +159,7 @@
                    <?php
                    }
                    ?>
+
 					</div>
 				</div>
 			</div>

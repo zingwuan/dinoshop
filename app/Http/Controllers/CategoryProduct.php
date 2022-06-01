@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Redirect;
+use Excel;
 
 class CategoryProduct extends Controller
 {
@@ -91,6 +92,16 @@ class CategoryProduct extends Controller
         DB::table('tbl_category_product')->where('category_id',$category_product_id)->delete();
         session()->put('message','Xóa danh mục sản phẩm thành công');
         return Redirect::to('all-category-product');
+    }
+
+    public function export_csv()
+    {
+        
+    }
+
+    public function import_csv()
+    {
+        
     }
     //End Function Admin
      

@@ -75,10 +75,10 @@
                 {{csrf_field()}}
 			    <div class="payment-options">
 					<span>
-						<label><input name="payment_option" value="ATM" type="checkbox"> Thanh toán bằng thẻ ATM</label>
+						<label><input name="payment_option" value="1" type="checkbox"> Thanh toán bằng thẻ ATM</label>
 					</span>
 					<span>
-						<label><input name="payment_option" value="tiền mặt" type="checkbox"> Thanh toán bằng tiền mặt</label>
+						<label><input name="payment_option" value="2" type="checkbox"> Thanh toán bằng tiền mặt</label>
 					</span>
 					<!-- <span>
 						<label><input type="checkbox"> Paypal</label>

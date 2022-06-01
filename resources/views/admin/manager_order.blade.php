@@ -4,7 +4,7 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Liệt kê danh mục sản phẩm
+      Liệt kê đơn hàng
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
@@ -43,36 +43,26 @@
                 <input type="checkbox"><i></i>
               </label>
             </th>
-            <th>Tên danh mục</th>
+            <th>Tên người mua</th>
+            <th>Tổng tiền</th>
+            <th>Trạng thái</th>
             <th>Hiển thị</th>
-            
+
             <th style="width:30px;"></th>
           </tr>
         </thead>
         <tbody>
-        @foreach($all_category_product as $key => $cate_pro)
+        @foreach($all_order as $key => $order)
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-            <td>{{ $cate_pro->category_name}}</td>
-            <td><span class="text-ellipsis">
-                <?php
-                 if($cate_pro->category_status==0)
-                 {
-                     ?>
-                     <a href="{{URL::to('/unactive-category-product/'.$cate_pro->category_id)}}"><span class ="fa-thumb-styling fa fa-thumbs-up"></span></a>
-                     <?php
-                      }else{
-                    ?>
-                    <a href="{{URL::to('/active-category-product/'.$cate_pro->category_id)}}"><span class ="fa-thumb-styling fa fa-thumbs-down"></span></a>
-                    <?php
-                      }
-                ?>
-            </span></td>
+            <td>{{ $order->customer_name}}</td>
+            <td>{{ $order->order_total}}</td>
+            <td>{{ $order->order_status}}</td>
     
             <td>
-              <a href="{{URL::to('/edit-category-product/'.$cate_pro->category_id)}}" class="active styling-edit" ui-toggle-class="">
+              <a href="{{URL::to('/edit-order/'.$order->order_id)}}" class="active styling-edit" ui-toggle-class="">
                   <i class="fa fa-pencil-square-o text-success text-active"></i></a>
-              <a onclick="return confirm('Bạn có chắc chắn muốn xóa ?')" href="{{URL::to('/delete-category-product/'.$cate_pro->category_id)}}" class="active styling-edit" ui-toggle-class="">
+              <a onclick="return confirm('Bạn có chắc chắn muốn xóa ?')" href="{{URL::to('/delete-order/'.$order->order_id)}}" class="active styling-edit" ui-toggle-class="">
                   <i style="padding-left:5px" class="fa fa-times text-danger text"></i></a>
             </td>
           </tr>
@@ -80,18 +70,6 @@
           
         </tbody>
       </table>
-      <form action="{{URL::to('import-csv')}}" method="POST" enctype="multipart/form-data">
-         {{csrf_field()}}
-         <input type="file" name="file" accept=".xlsx"><br>
-         <input type="submit" value="Import file Excel" name="import_csv" class="btn btn-warning">
-      </form>
-
-
-      <form action="{{URL::to('export-csv')}}" method="POST" >
-         {{csrf_field()}}
-         <input type="submit" value="Export file Excel" name="export" class="btn btn-success">
-      </form>
-
     </div>
     <footer class="panel-footer">
       <div class="row">

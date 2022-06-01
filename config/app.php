@@ -192,9 +192,10 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -213,6 +214,7 @@ return [
         'ExampleClass' => App\Example\ExampleClass::class,
         'Session' => Illuminate\Support\Facades\Session::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        
     ])->toArray(),
 
 ];

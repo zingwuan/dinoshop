@@ -7,9 +7,21 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Redirect;
+use Cart;
 
 class CheckoutController extends Controller
 {
+    public function authLogin()
+    {
+        $admin_id = session()->get('admin_id');
+        if($admin_id)
+        {
+            Redirect::to('dashboard');
+        }else{
+           return Redirect::to('admin')->send();
+        }
+    }
+    
     public function login_checkout ()
     {
         $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
@@ -89,10 +101,50 @@ class CheckoutController extends Controller
         
     }
 
-    public function order_place()
+    public function order_place(Request $request)
     {
+        //insert payment
+        $data = array();
+        $data['payment_method'] = $request->payment_option;
+        $data['payment_status'] = 'Dang cho thanh toan';
+        $payment_id = DB::table('tbl_payment')->insertgetId($data);
+
+        //insert order
+        $order_data = array();
+        $order_data['customer_id'] = session()->get('customer_id');
+        $order_data['shipping_id'] = session()->get('shipping_id');
+        $order_data['payment_id'] = $payment_id;
+        $order_data['order_total'] = Cart::total();
+        $order_data['order_status'] = 'Dang cho xu ly';
+        $order_id=DB::table('tbl_order')->insertgetId($order_data);
+
+        //insert order-details
+        $content = Cart::content();
+        foreach($content as $v_content)
+        {
+        $order_detail_data['order_id'] = $order_id;
+        $order_detail_data['product_id'] = $v_content->id;
+        $order_detail_data['product_name'] = $v_content->name;
+        $order_detail_data['product_price'] = $v_content->price;
+        $order_detail_data['product_sales_quantity'] = $v_content->qty;
+        DB::table('tbl_order_details')->insertgetId($order_detail_data);
+        }
+        if($data['payment_method']==1)
+        {
+            echo ' Thanh toasn ATM';
+        }
+        elseif($data['payment_method']==2)
+        {
+            Cart::destroy();
+            $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
+             return view('pages.checkout.payment_cash')->with('category',$cate_product);
+    
+        }
         
     }
+
+    
+    
 
 
 }

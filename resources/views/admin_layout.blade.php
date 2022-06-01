@@ -93,6 +93,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>Tổng quan</span>
                     </a>
                 </li>
+
+				<li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Đơn hàng</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="{{URL::to('/manager-order')}}">Quản lý đơn hàng</a></li>
+                    </ul>
+                </li>
+
+				
                 
                 <li class="sub-menu">
                     <a href="javascript:;">
@@ -147,11 +159,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{ asset('../backend/js/jquery.scrollTo.js')}}"></script>
 <!-- morris JavaScript -->	
 <script>
-	$(document).ready(function() {
-		//BOX BUTTON SHOW AND CLOSE
-	   jQuery('.small-graph-box').hover(function() {
+	$(document).ready(function() 
+	{
+		jQuery('.small-graph-box').hover(function()
+		 {
 		  jQuery(this).find('.box-button').fadeIn('fast');
-	   }, function() {
+	     }, function() {
 		  jQuery(this).find('.box-button').fadeOut('fast');
 	   });
 	   jQuery('.small-graph-box .box-close').click(function() {

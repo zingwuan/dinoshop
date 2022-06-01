@@ -4,7 +4,80 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Liệt kê danh mục sản phẩm
+      Thông tin khách hàng
+    </div>
+    
+    <div class="table-responsive">
+    <?php
+	$message = session()->get('message');
+	if($message){
+		echo $message;
+		session()->get('message',null);
+	}
+	?>
+      <table class="table table-striped b-t b-light">
+        <thead>
+          <tr>
+            <th>Tên khách hàng</th>
+            <th>Email</th>
+            <th>Số điện thoại</th>
+            <th style="width:30px;"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{$order_by_id->customer_name}}</td>
+            <td>{{$order_by_id->customer_email}}</td>
+            <td>{{$order_by_id->customer_phone}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
+</div>
+<br></br>
+<div class="table-agile-info">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Thông tin vận chuyển
+    </div>
+    
+    <div class="table-responsive">
+    <?php
+	$message = session()->get('message');
+	if($message){
+		echo $message;
+		session()->get('message',null);
+	}
+	?>
+      <table class="table table-striped b-t b-light">
+        <thead>
+          <tr>
+            <th>Tên người nhận </th>
+            <th>Địa chỉ</th>
+            <th>Số điện thoại</th>
+            <th style="width:30px;"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{$order_by_id->shipping_name}}</td>
+            <td>{{$order_by_id->shipping_address}}</td>
+            <td>{{$order_by_id->shipping_phone}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
+</div>
+<br></br>
+
+<div class="table-agile-info">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Chi tiết đơn hàng
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
@@ -43,55 +116,28 @@
                 <input type="checkbox"><i></i>
               </label>
             </th>
-            <th>Tên danh mục</th>
-            <th>Hiển thị</th>
-            
+            <th>Tên sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Giá </th>
+            <th>Tổng tiền</th>
+
             <th style="width:30px;"></th>
           </tr>
         </thead>
         <tbody>
-        @foreach($all_category_product as $key => $cate_pro)
+        
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-            <td>{{ $cate_pro->category_name}}</td>
-            <td><span class="text-ellipsis">
-                <?php
-                 if($cate_pro->category_status==0)
-                 {
-                     ?>
-                     <a href="{{URL::to('/unactive-category-product/'.$cate_pro->category_id)}}"><span class ="fa-thumb-styling fa fa-thumbs-up"></span></a>
-                     <?php
-                      }else{
-                    ?>
-                    <a href="{{URL::to('/active-category-product/'.$cate_pro->category_id)}}"><span class ="fa-thumb-styling fa fa-thumbs-down"></span></a>
-                    <?php
-                      }
-                ?>
-            </span></td>
-    
-            <td>
-              <a href="{{URL::to('/edit-category-product/'.$cate_pro->category_id)}}" class="active styling-edit" ui-toggle-class="">
-                  <i class="fa fa-pencil-square-o text-success text-active"></i></a>
-              <a onclick="return confirm('Bạn có chắc chắn muốn xóa ?')" href="{{URL::to('/delete-category-product/'.$cate_pro->category_id)}}" class="active styling-edit" ui-toggle-class="">
-                  <i style="padding-left:5px" class="fa fa-times text-danger text"></i></a>
-            </td>
+            <td>{{$order_by_id->product_name}}</td>
+            <td>{{$order_by_id->product_sales_quantity}}</td>
+            <td>{{$order_by_id->product_price}}</td>
+            <td>{{$order_by_id->product_price * $order_by_id->product_sales_quantity }}</td>
           </tr>
-        @endforeach
+       
           
         </tbody>
       </table>
-      <form action="{{URL::to('import-csv')}}" method="POST" enctype="multipart/form-data">
-         {{csrf_field()}}
-         <input type="file" name="file" accept=".xlsx"><br>
-         <input type="submit" value="Import file Excel" name="import_csv" class="btn btn-warning">
-      </form>
-
-
-      <form action="{{URL::to('export-csv')}}" method="POST" >
-         {{csrf_field()}}
-         <input type="submit" value="Export file Excel" name="export" class="btn btn-success">
-      </form>
-
+      <a href="{{URL::to('/print-order/'.$order_by_id->customer_name)}}">In đơn hàng</a>
     </div>
     <footer class="panel-footer">
       <div class="row">

@@ -7,6 +7,9 @@ use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\DiscountController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +48,9 @@ Route::get('/unactive-category-product/{category_product_id}',[CategoryProduct::
 Route::get('/active-category-product/{category_product_id}',[CategoryProduct::class,'active_category_product'] );
 
 Route::post('/save-category-product',[CategoryProduct::class,'save_category_product'] );
+Route::post('/import-csv',[CategoryProduct::class,'import_csv'] );
+Route::post('/export-csv',[CategoryProduct::class,'import_csv'] );
+
 
 //Product
 Route::get('/add-product',[ProductController::class,'add_product'] );
@@ -86,6 +92,10 @@ Route::get('/checkout',[CheckoutController::class,'checkout']);
 Route::get('/payment',[CheckoutController::class,'payment']);
 Route::post('/save-checkout-customer',[CheckoutController::class,'save_checkout_customer']);
 
+//Admin-Order
+Route::get('/manager-order',[OrderController::class,'manager_order']);
+Route::get('/edit-order/{orderId}',[OrderController::class,'edit_order']);
+Route::get('/print-order/{orderId}',[OrderController::class,'print_order']);
 
 
 
