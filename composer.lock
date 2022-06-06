@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8f788d449546cd26ad7ba8bfc27a14f6",
+    "content-hash": "6889526e4ade5a1275c6cd18ddc5c8dd",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -2013,16 +2013,16 @@
         },
         {
             "name": "maatwebsite/excel",
-            "version": "v1.1.5",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Maatwebsite/Laravel-Excel.git",
-                "reference": "0c67aba8387726458d42461eae91a3415593bbc4"
+                "reference": "a852ca54ab8cb6c27d613dc36ba3b65e4d19215b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/0c67aba8387726458d42461eae91a3415593bbc4",
-                "reference": "0c67aba8387726458d42461eae91a3415593bbc4",
+                "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/a852ca54ab8cb6c27d613dc36ba3b65e4d19215b",
+                "reference": "a852ca54ab8cb6c27d613dc36ba3b65e4d19215b",
                 "shasum": ""
             },
             "require": {
@@ -2068,7 +2068,7 @@
                 "issues": "https://github.com/Maatwebsite/Laravel-Excel/issues",
                 "source": "https://github.com/Maatwebsite/Laravel-Excel/tree/master"
             },
-            "time": "2014-07-10T09:06:07+00:00"
+            "time": "2014-06-07T17:15:06+00:00"
         },
         {
             "name": "monolog/monolog",

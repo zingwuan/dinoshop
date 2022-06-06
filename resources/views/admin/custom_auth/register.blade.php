@@ -25,7 +25,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <div class="log-w3">
 <div class="w3layouts-main">
-	<h2>Đăng Nhập</h2>
+	<h2>Đăng Ký Auth</h2>
 	<?php
 	$message = session()->get('message');
 	if($message){
@@ -33,14 +33,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		session()->get('message',null);
 	}
 	?>
-		<form action="{{URL::to('/admin-dashboard')}}" method="post">
+		<form action="{{URL::to('/register')}}" method="post">
             {{ csrf_field() }}
-			<input type="text" class="ggg" name="admin_email" placeholder="E-MAIL" required="">
+			<input type="text" class="ggg" name="admin_name" placeholder="Name" required="">
+            <input type="text" class="ggg" name="admin_email" placeholder="E-MAIL" required="">
+			<input type="text" class="ggg" name="admin_phone" placeholder="Phone" required="">
 			<input type="password" class="ggg" name="admin_password" placeholder="PASSWORD" required="">
 			<span><input type="checkbox" />Lưu mật khẩu</span>
 			<h6><a href="#">Quên mật khẩu</a></h6>
 				<div class="clearfix"></div>
-				<input type="submit" value="Đăng nhập" name="login">
+				<input type="submit" value="Đăng ký" name="login">
 
 				<div class="g-recaptcha" data-sitekey="{{env('CAPTCHA_KEY')}}"></div>
 <br/>
@@ -54,8 +56,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<a href="{{url('/login-facebook')}}">Login Facebook</a> |
 		<a  href="{{url('/login-google')}}">Login Google</a> |
 		<a  href="{{url('/register-auth')}}">Đăng ký Auth</a> |
-		<a  href="{{url('/login-auth')}}">Đăng nhập Auth</a>
-
+        <a  href="{{url('/login-auth')}}">Đăng nhập Auth</a>
 		<!-- <p>Don't Have an Account ?<a href="registration.html">Create an account</a></p> -->
 </div>
 </div>

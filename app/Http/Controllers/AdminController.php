@@ -12,15 +12,16 @@ use Illuminate\Support\Facades\Redirect;
 use App\Rules\Captcha;
 use Socialite;
 
+
 class AdminController extends Controller
 {
 
     public function authLogin()
     {
-        $admin_id = session()->get('admin_id');
+        $admin_id = Auth::id();
         if($admin_id)
         {
-            Redirect::to('dashboard');
+            return Redirect::to('dashboard');
         }else{
            return Redirect::to('admin')->send();
         }
@@ -123,7 +124,7 @@ class AdminController extends Controller
 
     public function dashboard(Request $request)
     {
-       $data = $request->all();
+       
        $admin_email = $request->admin_email;
        $admin_password = md5($request->admin_password);
        $login = Login::where('admin_email',$admin_email)->where('admin_password',$admin_password)->first();

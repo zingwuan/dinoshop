@@ -13,7 +13,7 @@ class ProductController extends Controller
 {
     public function authLogin()
     {
-        $admin_id = session()->get('admin_id');
+        $admin_id = Auth::id();
         if($admin_id)
         {
             Redirect::to('dashboard');

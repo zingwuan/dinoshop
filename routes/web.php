@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\DiscountController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -97,7 +98,17 @@ Route::get('/manager-order',[OrderController::class,'manager_order']);
 Route::get('/edit-order/{orderId}',[OrderController::class,'edit_order']);
 Route::get('/print-order/{orderId}',[OrderController::class,'print_order']);
 
+//Authentication-roles
+Route::get('/register-auth',[AuthController::class,'register_auth']);
+Route::get('/login-auth',[AuthController::class,'login_auth']);
+Route::get('/logout-auth',[AuthController::class,'logout_auth']);
+Route::post('/register',[AuthController::class,'register']);
+Route::post('/login',[AuthController::class,'login']);
 
+//Admin-user
+Route::get('/users',[UserController::class,'index']);
+Route::get('/add-users',[UserController::class,'add_user']);
+Route::post('/assign-roles',[UserController::class,'assign_roles']);
 
 
 
