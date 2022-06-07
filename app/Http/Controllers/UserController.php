@@ -24,12 +24,31 @@ class UserController extends Controller
         return view('admin.users.add_users');
     }
 
+    public function delete_user($admin_id)
+    {
+        if(Auth::id()==$admin_id)
+        {
+            return redirect()->back()->with('message','Bạn không được xóa chính mình');
+        }
+        $admin = Admin::find($admin_id);
+        if($admin)
+        {
+            $admin->roles()->detach();
+            $admin->delete();
+        }
+        return redirect()->back()->with('message','Xóa user thành công');
+
+    }
+
     public function assign_roles(Request $request){
+        if(Auth::id()==$request->admin_id)
+        {
+            return redirect()->back()->with('message','Bạn không được phân quyền chính mình');
+        }
+
         $user = Admin::where('admin_email',$request['admin_email'])->first();
         $user->roles()->detach();
-        if($request->author_role){
-           $user->roles()->attach(Roles::where('name','author')->first());     
-        }
+        
         if($request->user_role){
            $user->roles()->attach(Roles::where('name','user')->first());     
         }

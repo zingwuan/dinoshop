@@ -10,6 +10,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MailControler;
 
 
 /*
@@ -54,8 +55,11 @@ Route::post('/export-csv',[CategoryProduct::class,'import_csv'] );
 
 
 //Product
-Route::get('/add-product',[ProductController::class,'add_product'] );
-Route::get('/all-product',[ProductController::class,'all_product'] );
+Route::group(['middleware' => 'auth.roles' ],function(){
+    Route::get('/add-product',[ProductController::class,'add_product'] );
+    Route::get('/all-product',[ProductController::class,'all_product'] );
+});
+
 
 Route::get('/edit-product/{product_id}',[ProductController::class,'edit_product'] );
 Route::get('/delete-product/{product_id}',[ProductController::class,'delete_product'] );
@@ -109,6 +113,13 @@ Route::post('/login',[AuthController::class,'login']);
 Route::get('/users',[UserController::class,'index']);
 Route::get('/add-users',[UserController::class,'add_user']);
 Route::post('/assign-roles',[UserController::class,'assign_roles']);
+Route::get('/delete-user/{admin_id}',[UserController::class,'delete_user']);
+
+//Send Mail
+Route::get('/forgot-password',[MailControler::class,'forgot_password']);
+Route::post('/send-mail-pass',[MailControler::class,'send_mail_pass']);
+Route::get('/update-new-pass',[MailControler::class,'update_new_pass']);
+Route::post('/reset-new-pass',[MailControler::class,'reset_new_pass']);
 
 
 

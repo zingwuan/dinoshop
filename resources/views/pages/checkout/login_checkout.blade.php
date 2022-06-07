@@ -103,8 +103,9 @@
              </label>
              <input type="password" name="password_account" required autocomplete="off"/>
            </div>
+           
             
-           <p class="forgot"><a href="#">Lấy lại mật khẩu</a></p>
+           <p class="forgot"><a href="{{URL::to('/forgot-password')}}">Lấy lại mật khẩu</a></p>
             
            <button type="submit" class="button button-block">Đăng nhập</button>
             

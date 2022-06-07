@@ -61,7 +61,9 @@
                
                 <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
                 <td>{{ $user->admin_name }}</td>
-                <td>{{ $user->admin_email }} <input type="hidden" name="admin_email" value="{{ $user->admin_email }}"></td>
+                <td>{{ $user->admin_email }} 
+                  <input type="hidden" name="admin_email" value="{{ $user->admin_email }}">
+                  <input type="hidden" name="admin_id" value="{{ $user->admin_id }}"></td>
                 <td>{{ $user->admin_phone }}</td>
                 <td>{{ $user->admin_password }}</td>
                 
@@ -70,9 +72,8 @@
 
               <td>
                   
-                    
-                 <input type="submit" value="Assign roles" class="btn btn-sm btn-default">
-                
+                 <p> <input type="submit" value="Phân quyền" class="btn btn-sm btn-default"></p>
+                  <p><a style="margin:5px 0" class="btn btn-sm btn-danger" href="{{('/delete-user/'.$user->admin_id)}}">Xóa user</a></p>
               </td> 
 
               </tr>
