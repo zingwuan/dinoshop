@@ -105,7 +105,9 @@
            </div>
            
             
-           <p class="forgot"><a href="{{URL::to('/forgot-password')}}">Lấy lại mật khẩu</a></p>
+           <a href="{{URL::to('/forgot-password')}}">Lấy lại mật khẩu</a>
+           <a style="float:right" href="{{url('/login-customer-google')}}">Đăng nhập Google</a> 
+    <br></br>
             
            <button type="submit" class="button button-block">Đăng nhập</button>
             

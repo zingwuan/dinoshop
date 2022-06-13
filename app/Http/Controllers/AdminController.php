@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\Session\Session;
 use App\Models\Login;
-use App\Models\Social;
+use App\Models\SocialCustomer;
 use Illuminate\Support\Facades\Redirect;
 use App\Rules\Captcha;
 use Socialite;
@@ -26,94 +27,10 @@ class AdminController extends Controller
            return Redirect::to('admin')->send();
         }
     }
-
-    public function login_facebook(){
-        return Socialite::driver('facebook')->redirect();
-    }
-
-    public function callback_facebook(){
-        $provider = Socialite::driver('facebook')->stateless()->user();
-        $account = Socialite::where('provider','facebook')->where('provider_user_id',$provider->getId())->first();
-    if($account)
-    {
-        $account_name = Login::where('admin_id',$account->user)->first();
-        session()->put('admin_name',$account_name->admin_name);
-        session()->put('admin_id',$account_name->admin_id);
-        return redirect('dashboard')->with('message','Đăng nhập Admin thành công');
-    }else{
-
-        $customer_new = new Social([
-            'provider_user_id' => $provider->getId(),
-            'provider' => 'facebook'
-        ]);
-        $orang = Login::where('admin_email',$provider->getEmail())->first();
-        if(!$orang)
-        {
-            $orang = Login::create([
-                'admin_name' =>$provider->getName(),
-                'admin_email' =>$provider->getEmail(),
-                'admin_password'=>'',
-                'admin_phone'=>''
-            ]);
-        }
-        $customer_new->login()->associate($orang);
-        $customer_new->save();
-
-        $account_name = Login::where('admin_id',$account->user)->first();
-        session()->put('admin_name',$account_name->admin_name);
-        session()->put('admin_id',$account_name->admin_id);
-        return redirect('dashboard')->with('message','Đăng nhập Admin thành công');
-    }
-    }
-      
-    public function login_google(){
-        return Socialite::driver('google')->redirect();
-    }
-
-    public function callback_google(){
-        $users = Socialite::driver('google')->stateless()->user(); 
-        $auth_User = $this->findOrCreateUser($users,'google');
-        if($auth_User)
-        {
-            $account_name = Login::where('admin_id',$auth_User->user)->first();
-            session()->put('admin_name',$account_name->admin_name);
-            session()->put('admin_id',$account_name->admin_id);
-        }
-        return redirect('dashboard')->with('message', 'Đăng nhập Admin thành công');
-      
-     }
-
-    public function findOrCreateUser($users,$provider){
-        $auth_User = Social::where('provider_user_id', $users->id)->first();
-        if($auth_User){
-            return $auth_User;
-        }else{
-            $customer_new = new Social([
-                'provider_user_id' => $users->id,
-                'provider' => strtoupper($provider)
-            ]);
-    
-            $orang = Login::where('admin_email',$users->email)->first();
-    
-                if(!$orang){
-                    $orang = Login::create([
-                        'admin_name' => $users->name,
-                        'admin_email' => $users->email,
-                        'admin_password' => '',
-                        'admin_phone' => '',
-                        'admin_status' => 1
-                    ]);
-                }
-                $customer_new->login()->associate($orang);
-                $customer_new->save();
-                return $customer_new;
-    
-            }
-        }
       
     public function index()
     {
-        return view('admin_login');
+        return view('admin.custom_auth.login_auth');
     }
 
     public function show_dashboard()
@@ -150,5 +67,55 @@ class AdminController extends Controller
         return Redirect::to('admin');
 
     }
+
+    public function login_customer_google()
+    {
+        return Socialite::driver('google')->redirect();
+
+    }
+
+    public function callback_google(){
+        $users = Socialite::driver('google')->stateless()->user(); 
+        $auth_User = $this->find_create_customer($users,'google');
+        if($auth_User)
+        {
+            $account_name = Customer::where('customer_id',$auth_User->user)->first();
+            session()->put('customer_name',$account_name->customer_name);
+            session()->put('customer_id',$account_name->customer_id);
+        }
+        return redirect('home')->with('message', 'Đăng nhập Google thành công');
+      
+     }
+
+    public function find_create_customer($users,$provider){
+        $auth_User = SocialCustomer::where('provider_user_id', $users->id)->first();
+        if($auth_User){
+            return $auth_User;
+        }
+        else
+        {
+            $customer_new = new SocialCustomer([
+                'provider_user_id' => $users->id,
+                'provider_user_email' => $users->email,
+                'provider' => strtoupper($provider)
+            ]);
+    
+            $customer = Customer::where('customer_email',$users->email)->first();
+    
+                if(!$customer){
+                    $customer = Customer::create([
+                        'customer_name' => $users->name,
+                        'customer_email' => $users->email,
+                        'customer_password' => '',
+                        'customer_phone' => ''
+                    ]);
+                }
+                $customer_new->customer()->associate($customer);
+                $customer_new->save();
+                return $customer_new;
+    
+        }
+    }
+    
 
 }

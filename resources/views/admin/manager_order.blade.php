@@ -28,13 +28,7 @@
       </div>
     </div>
     <div class="table-responsive">
-    <?php
-	$message = session()->get('message');
-	if($message){
-		echo $message;
-		session()->get('message',null);
-	}
-	?>
+    
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>

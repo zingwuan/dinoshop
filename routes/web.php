@@ -71,12 +71,12 @@ Route::get('/active-product/{product_id}',[ProductController::class,'active_prod
 Route::post('/save-product',[ProductController::class,'save_product'] );
 
 //Login Facebook
-Route::get('/login-facebook',[AdminController::class,'login_facebook']);
-Route::get('/admin/callback',[AdminController::class,'callback_facebook']);
+// Route::get('/login-facebook',[AdminController::class,'login_facebook']);
+// Route::get('/admin/callback',[AdminController::class,'callback_facebook']);
 
 //Login Google
-Route::get('/login-google',[AdminController::class,'login_google']);
-Route::get('/admin/google/callback',[AdminController::class,'callback_google']);
+// Route::get('/login-google',[AdminController::class,'login_google']);
+// Route::get('/admin/google/callback',[AdminController::class,'callback_google']);
 
 //Send Mail
 Route::get('/send-mail',[HomeController::class,'send_mail']);
@@ -100,6 +100,7 @@ Route::post('/save-checkout-customer',[CheckoutController::class,'save_checkout_
 //Admin-Order
 Route::get('/manager-order',[OrderController::class,'manager_order']);
 Route::get('/edit-order/{orderId}',[OrderController::class,'edit_order']);
+Route::get('/delete-order/{orderId}',[OrderController::class,'delete_order']);
 Route::get('/print-order/{orderId}',[OrderController::class,'print_order']);
 
 //Authentication-roles
@@ -121,5 +122,11 @@ Route::post('/send-mail-pass',[MailControler::class,'send_mail_pass']);
 Route::get('/update-new-pass',[MailControler::class,'update_new_pass']);
 Route::post('/reset-new-pass',[MailControler::class,'reset_new_pass']);
 
+//Login customer google
+Route::get('/login-customer-google',[AdminController::class,'login_customer_google']);
+Route::get('/admin/google/callback',[AdminController::class,'callback_google']);
 
+//Payment
+Route::post('/vnpay-payment',[CheckoutController::class,'vnpay_payment']);
+Route::post('/momo-payment',[CheckoutController::class,'momo_payment']);
 

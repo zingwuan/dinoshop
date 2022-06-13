@@ -47,6 +47,13 @@ class OrderController extends Controller
         return view('admin_layout')->with('admin.edit_order',$manager_order_by_id);
     }
 
+    public function delete_order($order_id)
+    {
+        $this->authLogin();
+        DB::table('tbl_order')->where('order_id',$order_id)->delete();
+        return Redirect::to('manager-order');
+    }
+
     public function print_order($order_id)
     {
         $pdf = \App::make('dompdf.wrapper');

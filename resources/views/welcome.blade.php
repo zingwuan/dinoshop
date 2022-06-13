@@ -105,6 +105,7 @@
                     <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>
                     Đăng Xuất
                   </a>
+                  <p>{{session()->get('customer_name')}}</p>
                 </li>
                 <?php
                    }else{
@@ -282,11 +283,13 @@
             </ul>
           </div>
         </footer>
+        
       </div>
       
 
 
 </body>
+
 <script src="{{ asset('../assets/dist/js/bootstrap.bundle.min.js')}}"></script>
 <script src="https://kit.fontawesome.com/54f0cb7e4a.js" crossorigin="anonymous"></script>
 
