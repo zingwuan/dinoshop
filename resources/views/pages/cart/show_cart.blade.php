@@ -85,39 +85,106 @@
 							<li>Phí vận chuyển <span>Free</span></li>
 							<li>Thành tiền <span>{{Cart::subtotal(0).' '.'VNĐ'}}</span></li>
 						</ul>
+						
+				   <?php
+						
+						
+						$customer_id = session()->get('customer_id');
+						if($customer_id != NULL){
+	 
+						 ?>
+					 
+					 <form style="float:right"action="{{url('/vnpay-payment')}}" method="POST">
+					   @csrf
+					   <input type="hidden" name="total_vnpay" value="{{$total}}">
+					<button type="submit"  class="btn btn-primary check-out " name="redirect" >Thanh toán VNPAY</a>
+					</form>					 <?php
+						}else{
+						 ?>
+                    <form style="float:right"action="{{url('/login-checkout')}}">
+					   @csrf
+					   <input type="hidden" name="total_vnpay" value="{{$total}}">
+					<button type="submit"  class="btn btn-primary check-out " name="redirect" >Thanh toán VNPAY</a>
+					</form>	 
 						<?php
+						}
+						?>
+
+                       <?php
+						
+						
+						$customer_id = session()->get('customer_id');
+						if($customer_id != NULL){
+	 
+						 ?>
+					 
+					 <form  action="{{url('/momo-payment')}}" method="POST">
+					   @csrf
+					   <input type="hidden" name="total_momo" value="{{$total}}">
+					<button type="submit"  style="margin-left: 30px;" class="btn btn-primary check-out " name="payUrl" >Thanh toán MOMO</a>
+					</form>			
+							 <?php
+						}else{
+						 ?>
+                    <form  action="{{url('/login-checkout')}}" >
+					   @csrf
+					   <input type="hidden" name="total_momo" value="{{$total}}">
+					<button type="submit"  class="btn btn-primary check-out " name="payUrl" >Thanh toán MOMO</a>
+					</form> 
+						<?php
+						}
+						?>
+				
+					</div>
+					<?php
 						
 						
                    $customer_id = session()->get('customer_id');
                    if($customer_id != NULL){
 
                     ?>
-                
-				<a class="btn btn-primary check_out" href="{{URL::to('/checkout')}}">Thanh toán</a>
+               <form action="{{URL::to('/order-place')}}" method="POST">
+                {{csrf_field()}}
+			    <div class="payment-options">
+				<input type="submit" value="Thanh toán tiền mặt" name="send_order_place" class="btn btn-primary">
+
+					<span>
+						<label><input name="payment_option" value="3" type="checkbox"> Thanh toán tiền mặt</label>
+					</span>
+					
+					
+				</div>
+
+            </form>	
                 <?php
                    }else{
                     ?>
-                <a class="btn btn-primary check_out" href="{{URL::to('/login-checkout')}}">Thanh toán</a>
+                <a class="btn btn-primary check_out" href="{{URL::to('/login-checkout')}}">Thanh toán tiền mặt</a>
 
                    <?php
                    }
                    ?>
-				   <form style="float:right"action="{{url('/vnpay-payment')}}" method="POST">
-					   @csrf
-					   <input type="hidden" name="total_vnpay" value="{{$total}}">
-					<button type="submit"  class="btn btn-primary check-out " name="redirect" >Thanh toán VNPAY</a>
-					</form>
-
-					<form  action="{{url('/momo-payment')}}" method="POST">
-					   @csrf
-					   <input type="hidden" name="total_momo" value="{{$total}}">
-					<button type="submit"  class="btn btn-primary check-out " name="payUrl" >Thanh toán MOMO</a>
-					</form>
-
+				</div>
+				<div class="col-sm-6">
+					<div class="total_area" style="height: 500px">
+						<h5 style="text-align: center;">Thông tin giao hàng</h5>
+						<div class="form-one" style="margin-left:30px ;">
+								<form action="{{URL::to('/save-checkout-customer')}}" method="POST" style="width: 577px;">
+									{{csrf_field()}}
+									<input type="text" name="shipping_email" placeholder="Email">
+									<input type="text" name="shipping_name" placeholder="Họ và tên ">
+									<input type="text" name="shipping_address" placeholder="Địa chỉ">
+									<input type="text" name="shipping_phone" placeholder="Phone">
+									<textarea  name="shipping_note" placeholder="Ghi chú đơn hàng" rows="4"></textarea>
+									<input style="width:100px;border-radius:20px" type="submit" value="Gửi" name="send_order" class="btn btn-primary">
+								</form>
+							</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+
+	
 
 @endsection

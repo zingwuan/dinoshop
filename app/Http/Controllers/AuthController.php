@@ -34,6 +34,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
      {
+         
         if(Auth::attempt(['admin_email'=>$request->admin_email,'admin_password'=>$request->admin_password]))
         {
             return redirect('dashboard');

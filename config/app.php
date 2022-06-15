@@ -217,7 +217,6 @@ return [
         'ExampleClass' => App\Example\ExampleClass::class,
         'Session' => Illuminate\Support\Facades\Session::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         
         
 

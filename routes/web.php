@@ -129,4 +129,3 @@ Route::get('/admin/google/callback',[AdminController::class,'callback_google']);
 //Payment
 Route::post('/vnpay-payment',[CheckoutController::class,'vnpay_payment']);
 Route::post('/momo-payment',[CheckoutController::class,'momo_payment']);
-

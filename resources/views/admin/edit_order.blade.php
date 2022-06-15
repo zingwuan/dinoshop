@@ -110,10 +110,10 @@
        
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-            <td>{{$ord->product_name}}</td>
-            <td>{{$ord->product_sales_quantity}}</td>
-            <td>{{$ord->product_price}}</td>
-            <td>{{$ord->product_price * $ord->product_sales_quantity }}</td>
+            <td>{{$order_by_id->product_name}}</td>
+            <td>{{$order_by_id->product_sales_quantity}}</td>
+            <td>{{$order_by_id->product_price}}</td>
+            <td>{{$order_by_id->product_price * $order_by_id->product_sales_quantity }}</td>
           </tr>
 
         

@@ -49,7 +49,7 @@ class CheckoutController extends Controller
     public function checkout()
     {
         $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
-        return view('pages.checkout.checkout')->with('category',$cate_product);
+        return view('pages.checkout.payment_cash')->with('category',$cate_product);
 
     }
 
@@ -65,7 +65,7 @@ class CheckoutController extends Controller
         $shipping_id = DB::table('tbl_shipping')->insertgetId($data);
 
         session()->put('shipping_id',$shipping_id);
-        return Redirect::to('payment');
+        return Redirect::to('show-cart');
     }
 
     public function payment()
