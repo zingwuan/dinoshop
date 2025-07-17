@@ -71,7 +71,7 @@
     
             <td>
               <a href="{{URL::to('/edit-category-product/'.$cate_pro->category_id)}}" class="active styling-edit" ui-toggle-class="">
-                  <i class="fa fa-pencil-square-o text-success text-active"></i></a>
+                  <i class="fa fa-times text-danger text "></i></a>
               <a onclick="return confirm('Bạn có chắc chắn muốn xóa ?')" href="{{URL::to('/delete-category-product/'.$cate_pro->category_id)}}" class="active styling-edit" ui-toggle-class="">
                   <i style="padding-left:5px" class="fa fa-times text-danger text"></i></a>
             </td>
@@ -80,17 +80,7 @@
           
         </tbody>
       </table>
-      <form action="{{URL::to('import-csv')}}" method="POST" enctype="multipart/form-data">
-         {{csrf_field()}}
-         <input type="file" name="file" accept=".xlsx"><br>
-         <input type="submit" value="Import file Excel" name="import_csv" class="btn btn-warning">
-      </form>
-
-
-      <form action="{{URL::to('export-csv')}}" method="POST" >
-         {{csrf_field()}}
-         <input type="submit" value="Export file Excel" name="export" class="btn btn-success">
-      </form>
+      
 
     </div>
     <footer class="panel-footer">

@@ -28,7 +28,7 @@
           -moz-user-select: none;
           user-select: none;
         }
-  
+
         @media (min-width: 768px) {
           .bd-placeholder-img-lg {
             font-size: 3.5rem;
@@ -37,7 +37,7 @@
       </style>
 </head>
 <body>
-  
+
     <!--NAVBAR-->
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <symbol id="bootstrap" viewBox="0 0 118 94">
@@ -62,17 +62,17 @@
           <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
         </symbol>
       </svg>
-    <header>
+    <header >
         <!--Carousel-->
-        <div class="px-3 py-2 bg-dark text-white">
-          <div class="container">
+        <div class="px-3 py-2 bg-dark text-white"  >
+          <div class="container"  >
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start" >
               <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
                 <img src="{{ asset('../frontend/images/logo2.png')}}" width="150"  height="32" alt=""></a>
-    
+
               <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                 <li>
-                  <a href="{{URL::to('home')}}" class="nav-link text-secondary">
+                  <a href="{{URL::to('home')}}" class="nav-link text-white">
                     <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#home"/></svg>
                     Trang Chủ
                   </a>
@@ -80,7 +80,7 @@
                 <li>
                   <a href="#" class="nav-link text-white">
                     <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#speedometer2"/></svg>
-                    Liên Hệ
+                    Sản phẩm
                   </a>
                 </li>
                 <li>
@@ -92,7 +92,7 @@
                 <li>
                   <a href="#" class="nav-link text-white">
                     <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#grid"/></svg>
-                    Sản Phẩm
+                    Liên Hệ
                   </a>
                 </li>
                 <?php
@@ -119,29 +119,30 @@
                    <?php
                    }
                    ?>
-                
+
               </ul>
             </div>
           </div>
         </div>
         <div id="menu">
-          
+
           <ul>
-          <img src="{{ asset('../frontend/images/home.jpg')}}" width="30" height="30" style=" margin-right: 25px;"alt="">
-          <li><a href="#">THỜI TRANG</a>
+          <!-- <img src="{{ asset('../frontend/images/home.jpg')}}" width="30" height="30" style=" margin-right: 25px;"alt=""> -->
+          <li><a href="#">GIỚI THIỆU</a>
             </li>
-          <li><a href="#">GIÀY DÉP</a>
+          <li><a href="#">SẢN PHẨM</a>
             </li>
-          <li><a href="#">SALE OFF</a></li>
-          <li><a href="#">SHOWROOM</a></li>
-          <li><a href="#">MISS GU</a></li>
+          <li><a href="#">KHUYỄN MÃI</a></li>
+          <li><a href="#">BỘ SƯU TẬP</a></li>
           <li><a href="#">TIN TỨC</a></li>
-          <li><a href="#">HỖ TRỢ</a></li>
+          <li><a href="#">TUYỂN DỤNG</a></li>
+
+
           </ul>
           </div>
-        
+
     </header>
-    
+
     <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -151,16 +152,16 @@
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img src="{{ asset('../frontend/images/banner2.png')}}" alt="" width="100%" height="100%">
-    
-            
+
+
           </div>
           <div class="carousel-item">
-            <img src="{{ asset('../frontend/images/banner2.jpg')}}" alt="" width="100%" height="100%">
-            
+            <img src="{{ asset('../frontend/images/banner3.png')}}" alt="" width="100%" height="100%">
+
           </div>
           <div class="carousel-item">
-            <img src="{{ asset('../frontend/images/banner3.jpg')}}" alt="" width="100%" height="100%">    
-            
+            <img src="{{ asset('../frontend/images/banner4.png')}}" alt="" width="100%" height="100%">
+
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
@@ -172,42 +173,28 @@
           <span class="visually-hidden">Next</span>
         </button>
     </div>
-    <div class="container marketing">
-       <div class="row">
-       @foreach($category as $key => $cate)
-        <div class="col-lg-4">
-          <img src="{{ asset('../frontend/images/quanao.jpg')}}" class="rounded-circle" width="140" height="140" alt="giaydep" >
-          
-          <h2> <a style="text-decoration:none;color:black" href="{{URL::to('/category-product/'.$cate->category_id)}}">{{$cate->category_name}}</a></h2>
-          
-          <p>{{$cate->category_desc}}</p>
-          <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        @endforeach
-        
-      </div><!-- /.row -->
-    </div>
+
 
     @yield('content')
-    
+
 
       <!--Quangcao-->
       <!-- <div class="container px-4 py-5" id="custom-cards">
         <h2 class="pb-2 border-bottom">Tin Tức Thời Trang</h2>
-    
+
         <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
           <div class="col" style="height: 352px;">
             <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" >
               <a href=""><img src="{{ asset('../frontend/images/tin2.png')}}" alt=""></a>
             </div>
           </div>
-    
+
           <div class="col"  style="height: 352px;">
             <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" >
               <a href=""><img src="{{ asset('../frontend/images/tin1.1.png')}}" alt=""></a>
             </div>
           </div>
-    
+
           <div class="col"  style="height: 352px;">
             <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" >
               <a href=""><img src="{{ asset('../frontend/images/tin3.png')}}" alt=""></a>
@@ -215,7 +202,7 @@
           </div>
         </div>
       </div> -->
-      
+
       <!--FOOTER-->
       <div class="container">
         <footer class="py-5">
@@ -229,7 +216,7 @@
                 <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Đặc Biệt</a></li>
               </ul>
             </div>
-      
+
             <div class="col-3">
               <h5>THÔNG TIN</h5>
               <ul class="nav flex-column">
@@ -240,7 +227,7 @@
                 <li class="nav-item mb-2" style="width:200px"><a href="#" class="nav-link p-0 text-muted">Tìm Chúng Tôi</a></li>
               </ul>
             </div>
-      
+
             <div class="col-3">
               <h5>TÀI KHOẢN</h5>
               <ul class="nav flex-column">
@@ -251,25 +238,25 @@
                 <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Lợi Nhuận</a></li>
               </ul>
             </div>
-      
+
             <div class="col-3">
               <h5>CONTACT US</h5>
               <ul class="nav flex-column">
                 <li class="nav-item mb-2" style="width:200px"><a href="#" class="nav-link p-0 text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
                   <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
-                </svg> 441 Hoàng Quốc Việt, Cầu Giấy, Hà Nội</a></li>
+                </svg> Đại học Giao thông vẩn tải Hà Nội</a></li>
                 <li class="nav-item mb-2" style="width:250px"><a href="mailto:nguyenhavu02@gmail.com" class="nav-link p-0 text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
                   <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
-                </svg> nguyenhavu02@gmail.com</a></li>
+                </svg> thaivanha@gmail.com</a></li>
                 <li class="nav-item mb-2" style="width:250px"><a href="tel:+0942083967" class="nav-link p-0 text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
-                </svg> 0942083967 </a></li>
+                </svg> 0989431232 </a></li>
                 <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"><img src="./image/products/payment.png" alt=""></a></li>
               </ul>
             </div>
           </div>
           <div class="d-flex justify-content-between py-4 my-4 border-top">
-            <p>&copy; 2021 Company, Inc. All rights reserved.</p>
+            <p>&copy; 2022 Company, Inc. All rights reserved.</p>
             <ul class="list-unstyled d-flex">
               <li class="ms-3"><a class="link-dark" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
                 <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
@@ -283,9 +270,9 @@
             </ul>
           </div>
         </footer>
-        
+
       </div>
-      
+
 
 
 </body>

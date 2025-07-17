@@ -45,6 +45,7 @@ class UserController extends Controller
         {
             return redirect()->back()->with('message','Bạn không được phân quyền chính mình');
         }
+        $data = $request->all();
 
         $user = Admin::where('admin_email',$request['admin_email'])->first();
         $user->roles()->detach();
@@ -56,5 +57,18 @@ class UserController extends Controller
            $user->roles()->attach(Roles::where('name','admin')->first());     
         }
         return redirect()->back()->with('message','Cấp quyền thành công');
+    }
+
+    public function store_users(Request $request){
+        $data = $request->all();
+        $admin = new Admin();
+        $admin->admin_name = $data['admin_name'];
+        $admin->admin_phone = $data['admin_phone'];
+        $admin->admin_email = $data['admin_email'];
+        $admin->admin_password = md5($data['admin_password']);
+        $admin->save();
+        $admin->roles()->attach(Roles::where('name','user')->first());
+        session()->put('message','Thêm users thành công');
+        return Redirect::to('users');
     }
 }

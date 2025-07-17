@@ -20,19 +20,19 @@
                   </div>
                   <form action="{{URL::to('/save-cart')}}" method="POST">
                       {{csrf_field()}}
-                  <div class="product-content-right-product-price"> 
+                  <div class="product-content-right-product-price">
                   <p style="color:red">{{number_format($value->product_price).' '.'VNĐ'}}</p>
                   </div>
                 <div class="quantity">
                   <p style="font-weight: bold;">Số lượng:</p>
-                  <input name="qty" type="number" min="1" value="1"/> 
-                  <input name="productid_hidden"  type="hidden"  value="{{$value->product_id}}"/> 
+                  <input name="qty" type="number" min="1" value="1"/>
+                  <input name="productid_hidden"  type="hidden"  value="{{$value->product_id}}"/>
                </div>
-                 
+
                <div class="product-content-right-product-button">
                   <button type="submit"><i class="fas fa-shopping-cart"></i> <p style="padding-top: 14px;">MUA HÀNG</p></button>
               </div>
-              </form> 
+              </form>
 
               <div class="product-content-right-product-icon">
                 <div class="product-content-right-product-icon-item">
@@ -57,10 +57,10 @@
                                     {{$value->product_content}}
                                 </span>
                         </div>
-                        
+
                     </div>
-                    
-                
+
+
                 </div>
             </div>
             </div>
@@ -73,7 +73,7 @@
    <div class="container px-4 py-5" id="custom-cards" style="margin-top: 50px;">
         <h2 class="pb-2 " style="font-size: 27px;
         font-weight: 450;border-bottom: 1px solid #dee2e6;">Sản Phẩm Liên Quan</h2>
-    
+
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-6 g-4">
             @foreach($relate as $key => $lienquan)
           <div class="col" style="margin-top:50px">
@@ -114,9 +114,9 @@
                       </div>
                    </div>
                </div>
-            </div> 
+            </div>
             @endforeach
-        </div>  
+        </div>
     </div>
 
 @endsection

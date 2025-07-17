@@ -15,13 +15,13 @@
 <div class="album py-5 bg-light">
 
         <div class="container">
-         
+
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
            @foreach($all_product as $key => $product)
-           
+
             <div class="col">
               <div class="card shadow-sm">
-               <a href="{{URL::to('/product-details/'.$product->product_id)}}"> 
+               <a href="{{URL::to('/product-details/'.$product->product_id)}}">
                    <img src="{{URL::to('uploads/product/'.$product->product_image)}}" width="100%" height="490px"  >
                 </a>
                 <div class="icon-display-combo" >
@@ -60,15 +60,15 @@
                 </div>
               </div>
             </div>
-            
+
             @endforeach
-            
-            
-            
-              
+
+
+
+
         <div class="col-lg-1  mx-auto">
           <a style="text-decoration: none;"href="">xem thêm ...</a>
-            
+
         </div>
       </div>
       <section class="py-5 text-center container" style="height: 250px;">
@@ -82,10 +82,10 @@
           </div>
         </div>
       </section>
-    
+
       <div class="album py-5 bg-light">
         <div class="container">
-    
+
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
           @foreach($all_product as $key => $product)
             <div class="col">
@@ -128,10 +128,10 @@
               </div>
             </div>
             @endforeach
-            
+
         <div class="col-lg-1  mx-auto">
           <a style="text-decoration: none;"href="">xem thêm ...</a>
-            
+
         </div>
       </div>
 

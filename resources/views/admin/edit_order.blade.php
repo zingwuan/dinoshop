@@ -20,9 +20,9 @@
         </thead>
         <tbody>
           <tr>
-            <td>{{$order_by_id->customer_name}}</td>
-            <td>{{$order_by_id->customer_email}}</td>
-            <td>{{$order_by_id->customer_phone}}</td>
+            <td>{{$customer_info->customer_name}}</td>
+            <td>{{$customer_info->customer_email}}</td>
+            <td>{{$customer_info->customer_phone}}</td>
           </tr>
         </tbody>
       </table>
@@ -50,9 +50,9 @@
         </thead>
         <tbody>
           <tr>
-            <td>{{$order_by_id->shipping_name}}</td>
-            <td>{{$order_by_id->shipping_address}}</td>
-            <td>{{$order_by_id->shipping_phone}}</td>
+            <td>{{$shipping_info->shipping_name}}</td>
+            <td>{{$shipping_info->shipping_address}}</td>
+            <td>{{$shipping_info->shipping_phone}}</td>
           </tr>
         </tbody>
       </table>
@@ -67,37 +67,14 @@
     <div class="panel-heading">
       Chi tiết đơn hàng
     </div>
-    <div class="row w3-res-tb">
-      <div class="col-sm-5 m-b-xs">
-        <select class="input-sm form-control w-sm inline v-middle">
-          <option value="0">Bulk action</option>
-          <option value="1">Delete selected</option>
-          <option value="2">Bulk edit</option>
-          <option value="3">Export</option>
-        </select>
-        <button class="btn btn-sm btn-default">Apply</button>                
-      </div>
-      <div class="col-sm-4">
-      </div>
-      <div class="col-sm-3">
-        <div class="input-group">
-          <input type="text" class="input-sm form-control" placeholder="Search">
-          <span class="input-group-btn">
-            <button class="btn btn-sm btn-default" type="button">Go!</button>
-          </span>
-        </div>
-      </div>
-    </div>
+    
+    
     <div class="table-responsive">
     
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
-            <th style="width:20px;">
-              <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
-              </label>
-            </th>
+            
             <th>Tên sản phẩm</th>
             <th>Số lượng</th>
             <th>Giá </th>
@@ -107,21 +84,19 @@
           </tr>
         </thead>
         <tbody>
-       
+        @foreach($order_by_id as $orrder)
           <tr>
-            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-            <td>{{$order_by_id->product_name}}</td>
-            <td>{{$order_by_id->product_sales_quantity}}</td>
-            <td>{{$order_by_id->product_price}}</td>
-            <td>{{$order_by_id->product_price * $order_by_id->product_sales_quantity }}</td>
+            <td>{{$orrder->product_name}}</td>
+            <td>{{$orrder->product_sales_quantity}}</td>
+            <td>{{$orrder->product_price}}</td>
+            <td>{{$orrder->product_price * $orrder->product_sales_quantity }}</td>
           </tr>
-
-        
+          @endforeach
        
-          
+        
+
         </tbody>
       </table>
-      <a href="{{URL::to('/print-order/'.$order_by_id->customer_name)}}">In đơn hàng</a>
     </div>
     <footer class="panel-footer">
       <div class="row">

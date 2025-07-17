@@ -70,13 +70,7 @@ Route::get('/active-product/{product_id}',[ProductController::class,'active_prod
 
 Route::post('/save-product',[ProductController::class,'save_product'] );
 
-//Login Facebook
-// Route::get('/login-facebook',[AdminController::class,'login_facebook']);
-// Route::get('/admin/callback',[AdminController::class,'callback_facebook']);
 
-//Login Google
-// Route::get('/login-google',[AdminController::class,'login_google']);
-// Route::get('/admin/google/callback',[AdminController::class,'callback_google']);
 
 //Send Mail
 Route::get('/send-mail',[HomeController::class,'send_mail']);
@@ -94,6 +88,7 @@ Route::post('/add-customer',[CheckoutController::class,'add_customer']);
 Route::post('/login-customer',[CheckoutController::class,'login_customer']);
 Route::post('/order-place',[CheckoutController::class,'order_place']);
 Route::get('/checkout',[CheckoutController::class,'checkout']);
+Route::get('/payment-onl',[CheckoutController::class,'payment_onl']);
 Route::get('/payment',[CheckoutController::class,'payment']);
 Route::post('/save-checkout-customer',[CheckoutController::class,'save_checkout_customer']);
 
@@ -114,6 +109,7 @@ Route::post('/login',[AuthController::class,'login']);
 Route::get('/users',[UserController::class,'index']);
 Route::get('/add-users',[UserController::class,'add_user']);
 Route::post('/assign-roles',[UserController::class,'assign_roles']);
+Route::post('store-users',[UserController::class,'store_users']);
 Route::get('/delete-user/{admin_id}',[UserController::class,'delete_user']);
 
 //Send Mail
@@ -129,3 +125,4 @@ Route::get('/admin/google/callback',[AdminController::class,'callback_google']);
 //Payment
 Route::post('/vnpay-payment',[CheckoutController::class,'vnpay_payment']);
 Route::post('/momo-payment',[CheckoutController::class,'momo_payment']);
+Route::get('/vnpay-payment',[CheckoutController::class,'vnpay_payment']);

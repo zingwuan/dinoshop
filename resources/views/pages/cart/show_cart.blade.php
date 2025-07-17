@@ -149,7 +149,10 @@
 				<input type="submit" value="Thanh toán tiền mặt" name="send_order_place" class="btn btn-primary">
 
 					<span>
-						<label><input name="payment_option" value="3" type="checkbox"> Thanh toán tiền mặt</label>
+						<label><input name="payment_option" value="2" type="checkbox"> Thanh toán tiền mặt</label>
+					</span>
+					<span>
+						<label><input name="payment_option" value="1" type="checkbox"> Thanh toán ATM</label>
 					</span>
 					
 					

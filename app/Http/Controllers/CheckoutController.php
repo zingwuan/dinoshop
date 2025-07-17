@@ -41,7 +41,7 @@ class CheckoutController extends Controller
 
         session()->put('customer_id',$customer_id);
         session()->put('customer_name',$request->customer_name);
-        return Redirect::to('checkout');
+        return Redirect::to('home');
 
 
     }
@@ -52,6 +52,15 @@ class CheckoutController extends Controller
         return view('pages.checkout.payment_cash')->with('category',$cate_product);
 
     }
+
+    public function payment_onl()
+    {
+        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
+        return view('pages.checkout.payment_onl')->with('category',$cate_product);
+
+    }
+
+
 
     public function save_checkout_customer (Request $request)
     {
@@ -71,7 +80,7 @@ class CheckoutController extends Controller
     public function payment()
     {
         $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
-        return view('pages.checkout.payment')->with('category',$cate_product);
+        return view('pages.checkout.payment', ['category'=>$cate_product]);
 
         
 
@@ -92,7 +101,7 @@ class CheckoutController extends Controller
         if($result)
         {
             session()->put('customer_id',$result->customer_id);
-            return Redirect::to('checkout');
+            return Redirect::to('home');
 
         }else{
             return Redirect::to('login-checkout');
@@ -106,7 +115,7 @@ class CheckoutController extends Controller
         //insert payment
         $data = array();
         $data['payment_method'] = $request->payment_option;
-        $data['payment_status'] = 'Dang cho thanh toan';
+        $data['payment_status'] = 'Đang chờ thanh toán';
         $payment_id = DB::table('tbl_payment')->insertgetId($data);
 
         //insert order
@@ -115,7 +124,7 @@ class CheckoutController extends Controller
         $order_data['shipping_id'] = session()->get('shipping_id');
         $order_data['payment_id'] = $payment_id;
         $order_data['order_total'] = Cart::subtotal(0);
-        $order_data['order_status'] = 'Dang cho xu ly';
+        $order_data['order_status'] = 'Đang chờ xử lý';
         $order_id=DB::table('tbl_order')->insertgetId($order_data);
 
         //insert order-details
@@ -131,7 +140,7 @@ class CheckoutController extends Controller
         }
         if($data['payment_method']==1)
         {
-            echo ' Thanh toasn ATM';
+            echo ' Thanh toán ATM';
         }
         elseif($data['payment_method']==2)
         {
@@ -139,16 +148,24 @@ class CheckoutController extends Controller
             $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
              return view('pages.checkout.payment_cash')->with('category',$cate_product);
     
+        }elseif($data['payment_method']==3)
+        {
+            Cart::destroy();
+             return redirect('/');
+    
         }
         
     }
+
+    
 
     public function vnpay_payment(Request $request)
     {
         $data = $request->all();
         $code_cart = rand(00,9999);
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_Returnurl = "http://127.0.0.1:8000/checkout";
+        $vnp_Returnurl = "http://127.0.0.1:8000/payment-onl";
+
         $vnp_TmnCode = "8HPXV6LZ";//Mã website tại VNPAY 
         $vnp_HashSecret = "VJPCLQTKIYLKSHLJQUEIAGDOOLKDZISD"; //Chuỗi bí mật
         $vnp_TxnRef = $code_cart; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
@@ -158,6 +175,8 @@ class CheckoutController extends Controller
         $vnp_Locale = 'vn';
         $vnp_BankCode = 'NCB';
         $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
+
+        
         //Add Params of 2.0.1 Version
 
         $inputData = array(
@@ -211,7 +230,9 @@ class CheckoutController extends Controller
                 die();
             } else {
                 echo json_encode($returnData);
-            }       
+            }  
+            
+        
     }
 
     public function momo_payment(Request $request)
